@@ -109,10 +109,17 @@ class JotForm {
         $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $this->debugLog('http code is: ' . $http_status);
 
-        if ($this->outputType == 'json') {
-            $result_obj = json_decode($result, true);
+        if ($result) {
+            if ($this->outputType == 'json') {
+                $result_obj = json_decode($result, true);
+            } else {
+                $result_obj = utf8_decode($result);
+            }
         } else {
-            $result_obj = utf8_decode($result);
+            $result_obj = [
+                "message": "No response received.",
+                "info": "No response received",
+            ];
         }
 
         if ($http_status != 200) {
