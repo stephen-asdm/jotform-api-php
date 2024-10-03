@@ -117,8 +117,8 @@ class JotForm {
             }
         } else {
             $result_obj = [
-                "message": "No response received.",
-                "info": "No response received",
+                "message" => "No response received.",
+                "info" => "No response received.",
             ];
         }
 
